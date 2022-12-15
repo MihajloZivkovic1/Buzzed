@@ -12,6 +12,31 @@
          formatZaispis += `</div></div>`;
          divNavMeni.innerHTML += formatZaispis;
 
+         //ikonice
+         let nizHref2 =["#","#","#","#"];
+         let nizIkonice =["images/fb-icon.png","images/twitter-icon.png","images/linkdin-icon.png","images/instagram-icon.png"];
+         let divIkonice =document.querySelector('.social_icon');
+         let formatZaIspis2 = `<ul>`
+         for(i in nizIkonice){
+            formatZaIspis2 += `<li><a href="${nizHref2[i]}"><img src="${nizIkonice[i]}"></a></li>`;
+         }
+         formatZaIspis2 += `</ul>`;
+         divIkonice.innerHTML += formatZaIspis2;
+
+        //carousel
+         let nizCarousel = ["#myCarousel"];
+         let nizDataSlide = ["1","2","3"];
+         let divCarousel = document.querySelector('#myCarousel');
+
+         formatZaispis3 = `<ol class = "carousel-indicators"><li data-target="#myCarousel" data-slide-to="0" class="active"></li>`
+         for(i in nizDataSlide){
+            formatZaispis3 += `<li data-target="${nizCarousel}" data-slide-to="${nizDataSlide[i]}""></li>`;
+         }
+         formatZaispis3 += `</ol>`;
+         divCarousel.innerHTML += formatZaispis3;
+
+
+
          const getDiscountBtn = document.querySelector(".get-discount-btn");
          const couponContariner = document.querySelector(".coupon-container");
          const closeBtn = document.querySelector(".coupon-container .close");
@@ -169,7 +194,10 @@ function checkInputs(){
         if(userNameValue === ''){
             //show error
             //add erroe class
-            setErrorFor(username,"Username is not valid.Example:Username123")
+            setErrorFor(username,"Username can not be empty.")
+        }
+        else if(!isName(userNameValue)){
+            setErrorFor(username,"Username is not valid. Example:Username123")
         }
         else{
             //add succes class
@@ -196,6 +224,7 @@ function checkInputs(){
             //add succes class
             setSuccessFor(password);
         }
+    
 
         if(password2Value === '' || password2Value.length < 7 ){
 
@@ -208,6 +237,7 @@ function checkInputs(){
                 //add succes class
                 setSuccessFor(password2);
         }
+
 
 }
 
@@ -232,7 +262,9 @@ function setSuccessFor(input){
 function isEmail(email) {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
-
+function isName(name) {
+	return /^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]$/.test(name);
+}
 
 
 
